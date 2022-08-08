@@ -1,47 +1,35 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import { GiftedChat } from 'react-native-gifted-chat'
-import initialMessages from './messages';
-import { renderInputToolbar, renderActions, renderComposer, renderSend } from './src/InputToolbar';
+// Import the screens
+import Login from './components/Login';
+import CreateAccount from './components/CreateAccount';
+import Chat from './components/Chat';
+// Import React Navigation
+import { createStackNavigator, StackNavigator } from 'react-navigation'
 
-export default function App() {
-  const [messages, setMessages] = useState([]);
-  const [text, setText] = useState('');
-
-  useEffect(() => {
-    setMessages(initialMessages.reverse())
-  }, [])
-
-  const onSend = useCallback((messages = []) => {
-    setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
-  }, [])
-
-  return (
-    <GiftedChat
-      messages={messages}
-      text={text}
-      // alignTop
-      alwaysShowSend
-      scrollToBottom
-      // showUserAvatar
-      renderAvatarOnTop
-      renderUsernameOnMessage
-      bottomOffset={26}
-      onInputTextChanged={setText}
-      onSend={messages => onSend(messages)}
-      user={{
-        _id: 1,
-      }}
-      // isCustomViewBottom
-      messagesContainerStyle={{ backgroundColor: '#ccc' }}
-      parsePatterns={(linkStyle) => [
-        {
-          pattern: /#(\w+)/,
-          style: linkStyle,
-          onPress: (tag) => console.log(`Pressed on hashtag: ${tag}`),
-        },
-      ]}
-      // renderInputToolbar={renderInputToolbar}
-      renderActions={renderActions}
-    />
-  )
+// Create the navigator
+const App = StackNavigator({
+  Login: {
+    screen: Login,
+    navigationOptions: ({ navigation }) => ({
+      header: null,
+    })
+  },
+  CreateAccount: {
+    screen: CreateAccount,
+    navigationOptions: ({ navigation }) => ({
+      header: null,
+    })
+  },
+  Chat: {
+    screen: Chat,
+    navigationOptions: ({ navigation }) => ({
+      header: null,
+    })
+  },
+},
+{
+    initialRouteName: 'Login',
 }
+);
+
+// Export it as the root component
+export default App;
