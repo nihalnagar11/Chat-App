@@ -9,11 +9,11 @@ import firebaseSvc from '../Firebase';
 
 class CreateAccount extends React.Component {
   static navigationOptions = {
-    title: 'Scv Chatter',
+    title: 'Chat',
   };
 
   state = {
-    name: 'Alex B',
+    name: 'Nhl Ngr',
     email: 'test3@gmail.com',
     password: 'test123',
     avatar: '',

@@ -118,5 +118,5 @@ class Firebase {
   }
 }
 
-const firebaseSvc = new FirebaseSvc();
-export default Firebase;
+const firebaseSvc = new Firebase();
+export default firebaseSvc;
